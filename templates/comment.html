@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<body>
+<h2 style="color: red; text-align: center"> Here are the previous comments</h2>
+<div class="bg-light">
+{#{% if comments %}#}
+   {% for co in comments %}
+  <h4 style="color: red">{{ user.username }}</h4>
+    {{ co.body }} <hr>
+{% endfor %}
+
+{#{% else %}#}
+{#<h2>Sorry there are no reviews for this meal yet yoy may like to be the first to comment</h2>#}
+{#    <br>#}
+{#    <a href="{% url 'comment' %}">add a comment</a>#}
+{#{% endif %}#}
+</div>
+<h2 style="color: red; text-align: center">add comment</h2>
+<form method="post" >
+    {% csrf_token %}
+    {{ add|crispy }}
+    <input type="submit">
+</form>
+</body>
+
+{% endblock %}
